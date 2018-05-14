@@ -1,4 +1,3 @@
-import os
 
 import dash
 import dash_core_components as dcc
@@ -8,9 +7,7 @@ import urllib.request
 import pandas as pd
 import plotly.graph_objs as go
 
-
 app = dash.Dash(__name__)
-server = app.server
 
 app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/bWLwgP.css"})
 
@@ -307,10 +304,11 @@ def push2variablesmeta(cleandata):
               dash.dependencies.Input('ddmenu', 'value')])
 
 def update_timer(pathname,n):
-    if len(n) > 0:
-        return 5*60*60*1000
-    else:
-        return 1.5*1000
+    if n is not None:
+        if len(n) > 0:
+            return 5*60*60*1000
+        else:
+            return 1.5*1000
 
 if __name__ == '__main__':
     app.run_server(debug=True)
