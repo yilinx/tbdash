@@ -7,12 +7,13 @@ import urllib.request
 import pandas as pd
 import plotly.graph_objs as go
 
-app = dash.Dash()
+app = dash.Dash(__name__)
 server = app.server
 
 app.css.append_css({
     'external_url': ['https://codepen.io/chriddyp/pen/bWLwgP.css','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css']
 })
+
 
 # function to call API and put the response in json format
 def grab_data(package_url):
@@ -85,8 +86,6 @@ def generate_table_header(dataframe):
 app.layout = html.Div(children=[
     dcc.Location(id='url2', refresh=False),
 
-    html.Div(id='test'),
-
     html.Div(children='''
         Please select the variables in interest.
     '''),
@@ -123,13 +122,6 @@ app.layout = html.Div(children=[
         )
 
 ])
-
-@app.callback(dash.dependencies.Output('test', 'children'),
-               [dash.dependencies.Input('url2', 'pathname')])
-
-def testurl(pathname):
-    return pathname
-
 
 # call back to store data in hidden Div---------------------------------------------------------------------
 
@@ -323,4 +315,4 @@ def update_timer(pathname,n):
 
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True)
