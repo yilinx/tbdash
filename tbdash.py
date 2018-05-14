@@ -85,6 +85,8 @@ def generate_table_header(dataframe):
 app.layout = html.Div(children=[
     dcc.Location(id='url2', refresh=False),
 
+    html.Div(id='test'),
+
     html.Div(children='''
         Please select the variables in interest.
     '''),
@@ -121,6 +123,13 @@ app.layout = html.Div(children=[
         )
 
 ])
+
+@app.callback(dash.dependencies.Output('test', 'children'),
+               [dash.dependencies.Input('url2', 'pathname')])
+
+def testurl(pathname):
+    return pathname
+
 
 # call back to store data in hidden Div---------------------------------------------------------------------
 
