@@ -1,1 +1,1 @@
-web: gunicorn tbdash:server
+web: gunicorn app:server
