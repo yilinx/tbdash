@@ -6,9 +6,12 @@ import json
 import urllib.request
 import pandas as pd
 import plotly.graph_objs as go
+import os
 
 app = dash.Dash(__name__)
 server = app.server
+
+server.secret_key = os.environ.get('SECRET_KEY', 'default-value-used-in-development')
 
 app.css.append_css({
     'external_url': ['https://codepen.io/chriddyp/pen/bWLwgP.css','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css']
