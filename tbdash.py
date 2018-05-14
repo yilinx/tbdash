@@ -8,6 +8,11 @@ import pandas as pd
 import plotly.graph_objs as go
 
 app = dash.Dash()
+server = app.server
+
+app.css.append_css({
+    'external_url': ['https://codepen.io/chriddyp/pen/bWLwgP.css','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css']
+})
 
 # function to call API and put the response in json format
 def grab_data(package_url):
@@ -307,11 +312,6 @@ def update_timer(pathname,n):
     else:
         return 1.5*1000
 
-
-
-app.css.append_css({
-    'external_url': ['https://codepen.io/chriddyp/pen/bWLwgP.css','https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css']
-})
 
 if __name__ == '__main__':
     app.run_server()
